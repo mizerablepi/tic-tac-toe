@@ -1,0 +1,64 @@
+body{
+  margin: 0;
+}
+
+header {
+  text-align: center;
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(3,1fr);
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
+}
+
+main button{
+  height: 5rem;
+  width: 5rem;
+  background-color: white;
+  border-width: 0;
+  font-size: 1.6rem;
+  border-style: solid;
+  border-color: black;
+}
+
+.c00{
+  border-width: 0 2px 2px 0;
+}
+
+.c01{
+  border-width: 0 0 2px 0;
+}
+
+.c02{
+  border-width: 0 0 2px 2px;
+}
+
+.c10{
+  border-width: 0 2px 0 0;
+}
+
+.c12{
+  border-width: 0 0 0 2px;
+}
+
+.c20{
+  border-width: 2px 2px 0 0;
+}
+
+.c21{
+  border-width: 2px 0 0 0;
+}
+
+.c22{
+  border-width: 2px 0 0 2px;
+}
