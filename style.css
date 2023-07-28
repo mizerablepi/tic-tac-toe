@@ -62,3 +62,29 @@ main button{
 .c22{
   border-width: 2px 0 0 2px;
 }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+}
+
+.player-1-form , .player-2-form {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  gap: 0.5rem;
+}
+
