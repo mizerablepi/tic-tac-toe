@@ -63,6 +63,20 @@ main button{
   border-width: 2px 0 0 2px;
 }
 
+.restart-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 0.5rem;
+}
+
+.winner-text{
+  font-size: 2rem;
+  text-align: center;
+  color: slategrey;
+}
+
 .menu {
   display: flex;
   flex-direction: column;

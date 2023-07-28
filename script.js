@@ -22,7 +22,16 @@ const GameBoard = (function () {
     return false;
   }
 
-  return {getBoard, getMark, setMark, isFull}
+  function resetBoard() {
+    board = [
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', ''],
+    ];
+    turnCount = 0;
+  }
+
+  return {getBoard, getMark, setMark, isFull, resetBoard}
 })();
 
 const GameController = (function () {
@@ -35,6 +44,10 @@ const GameController = (function () {
 
     players.push(Player(p1Tag, 'X', p1Username));
     players.push(Player(p2Tag, 'O', p2Username));
+
+    if (p1Tag == 'Computer') {
+      playComputersTurn();
+    }
   }
   
   function changeCurrentPlayer() {
@@ -114,11 +127,17 @@ const GameController = (function () {
     return (checkRows() || checkColumns() || checkDiagnols());
   }
 
+  function restart() {
+    GameBoard.resetBoard();
+    winner = null;
+    currentPlayer = 0;
+  }
+
   const getCurrentPlayer = () => players[currentPlayer].name;
 
   const getWinner = () => winner;
 
-  return {setPlayer,playTurn,getCurrentPlayer,getWinner}
+  return {setPlayer,playTurn,getCurrentPlayer,getWinner,restart}
 })();
 
 function Player(name,mark,username) {
@@ -127,12 +146,19 @@ function Player(name,mark,username) {
 
 const ScreenController = (function () {  
   let choiceForm = document.getElementsByClassName('menu')[0];
+  let winnerText = document.getElementsByClassName('winner-text')[0];
   
   let choiceBtn = document.querySelector('.menu button')
   choiceBtn.addEventListener('click', choiceHandler);
 
   let boardDiv = document.getElementsByClassName('board')[0];
   boardDiv.addEventListener('click', markHandler);
+
+  let restartBtn = document.getElementById('restart');
+  restartBtn.addEventListener('click', restartHandler);
+
+  let newGameBtn = document.getElementById('new-game');
+  newGameBtn.addEventListener('click', newGameHandler);
 
   function choiceHandler(event) {
     let p1Username = document.getElementById('p1-name').value;
@@ -143,11 +169,22 @@ const ScreenController = (function () {
     GameController.setPlayer(p1Username, p1Tag, p2Username, p2Tag);
 
     choiceForm.style.display = 'none';
+    updateScreen();
   }
 
   function markHandler(event){
     GameController.playTurn(event.target.dataset.loc);
     updateScreen(); //draws the tic-tac-toe board on screen
+  }
+
+  function restartHandler() {
+    GameController.restart();
+    winnerText.textContent = '';
+    updateScreen();
+  }
+
+  function newGameHandler() {
+    window.location.href = window.location.href;
   }
 
   function updateScreen() {
@@ -167,8 +204,8 @@ const ScreenController = (function () {
       for (let cell of cells) {
         cell.disabled = true;
       }
-      console.log('sc rec')
-      // TODO
+      winnerText.textContent = `${GameController.getWinner().username} Won!`;
+      
     }else if (GameController.getCurrentPlayer() === 'Computer') {
       for (let cell of cells) {
         cell.disabled = true;

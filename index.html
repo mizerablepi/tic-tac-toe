@@ -9,6 +9,7 @@
 </head>
 <body>
   <header>Tic-Tac-Toe</header>
+
   <main>
     <div class="board">
       <button class="c00" data-loc="00"></button>
@@ -22,6 +23,16 @@
       <button class="c22" data-loc="22"></button>
     </div>
   </main>
+  
+  <div class="restart-div">
+    <button id="restart">RESTART</button>
+    <button id="new-game">NEW GAME</button>
+  </div>
+
+  <div class="winner-text">
+ 
+  </div>
+
   <div class="menu">
     <div class="form">
       <div class="player-1-form">
@@ -31,12 +42,13 @@
         <label for="mark">Mark: </label>
         <input type="text" placeholder="'X'" id="mark" readonly>
         <div class="radio">
-          <input type="radio" name="p1type" value="human" id="human">
+          <input type="radio" name="p1type" value="human" id="human" checked>
           <label for="human">Human</label>
           <input type="radio" name="p1type" value="Computer" id="Bot">
           <label for="Bot">Bot</label>
         </div>
       </div>
+
       <div class="player-2-form">
         <h2>Player 2</h2>
         <label for="p2-name">Name: </label>
@@ -46,11 +58,12 @@
         <div class="radio">
           <input type="radio" name="p2type" value="human" id="p2-human">
           <label for="p2-human">Human</label>
-          <input type="radio" name="p2type" value="Computer" id="p2-Bot">
+          <input type="radio" name="p2type" value="Computer" id="p2-Bot" checked>
           <label for="p2-Bot">Bot</label>
         </div>
       </div>
     </div>
+
     <button>START</button>
   </div>
 </body>
